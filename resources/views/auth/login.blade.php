@@ -28,7 +28,7 @@
                 <div class="col-lg">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">LOGIN LARAVEL</h1>
+                            <h1 class="h4 text-gray-900 mb-4">LOGIN</h1>
                         </div>
                         @if (session('danger'))
                         <div class="alert alert-danger mt-2" role="alert">

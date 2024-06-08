@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Auth;
 
 
@@ -64,3 +65,7 @@ Route::middleware(['auth'])->group(function () {
 //user
 Route::post('/user/authenticate', [LoginController::class, 'authenticate']);
 Route::POST('/user/logout', [LoginController::class, 'logout']);
+
+
+    Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::get('/notifications/delete/{id}', [NotificationController::class, 'delete'])->name('notifications.delete');

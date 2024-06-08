@@ -45,28 +45,6 @@ class TransaksiController extends Controller
             'id_pro.required' => 'Produk Wajib diisi!'
         ]);
 
-        // $detailBarangMasuk = array(
-        //     'id_transaksi' => request()->get('id_transaksi'),
-        //     'id_barang' => request()->get('nama_barang'),
-        //     'barang_in' => request()->get('barang_in'),
-        //     'tanggal' => request()->get('tanggal')
-        // );
-        // DB::table('barang_masuk')->insert($detailBarangMasuk);
-
-        // $stoktambah = request()->get('barang_in');
-        // $stoksekarang = DB::table('tbl_barang')
-        //     ->select(DB::raw('stok'))
-        //     ->where('id', '=', request()->get('nama_barang'))->get();
-
-        // $nilai = 0;
-        // foreach ($stoksekarang as $barang) {
-        //     $nilai = $barang->stok;
-        // }
-
-        // $data = array(
-        //     'stok' => $nilai + $stoktambah
-        // );
-        // DB::table('tbl_barang')->where('id', '=', request()->get('nama_barang'))->update($data);
         DB::table('barang_masuk')->insert([
             'id_pro' => $request->id_pro,
             'id_sup' => $request->id_sup,
@@ -83,68 +61,16 @@ class TransaksiController extends Controller
 
          $stok = DB::table('tbl_jenisb')->where('id_produk', $request->id_pro)->value('onh_stok');
          $produk = DB::table('tbl_jenisb')->where('id_produk', $request->id_pro)->first();
-     
+        
          if ($stok >= 5) {
-             DB::table('notifications')->insert([
-                 'message' => 'Stok barang ' . $produk->produk_des . ' Penuh!!! '
-             ]);
-         }
+            DB::table('notifications')->insert([
+                'message' => 'Stok barang ' . $produk->produk_des . ' Penuh!!!',
+                'is_read' => 0
+            ]);
+        }
 
         return redirect('transaksi/b_masuk')->with('sukses', 'Data Barang Berhasil Ditambahkan!');
     }
-
-    // public function edit_barangmasuk($id_masuk)
-    // {
-    //     $data = [
-    //         'edit_masuk' => $this->TransaksiModel->get($id_masuk),
-    //         'barang' => $this->BarangModel->getData(),
-    //     ];
-
-    //     return view('transaksi/e_barangmasuk', $data);
-    // }
-    // public function save_editbarangmasuk($id_masuk)
-    // {
-    //     Request()->validate([
-    //         'nama_barang' => 'required',
-    //         'barang_in' => 'required',
-    //         'tanggal' => 'required',
-    //     ], [
-    //         'nama_barang.required' => 'Nama Barang wajib Di Isi !',
-    //         'barang_in.required' => 'Barang Masuk  Wajib Di Isi !',
-    //         'tanggal.required' => 'Tanggal  Wajib diisi !'
-    //     ]);
-
-    //     $detailBarangMasuk = array(
-    //         'id_masuk' => $id_masuk,
-    //         'id_transaksi' => request()->get('id_transaksi'),
-    //         'id_barang' => request()->get('nama_barang'),
-    //         'barang_in' => request()->get('barang_in'),
-    //         'tanggal' => request()->get('tanggal')
-    //     );
-    //     DB::table('barang_masuk')->where('id_masuk', $detailBarangMasuk['id_masuk'])->update($detailBarangMasuk);
-
-    //     $stoktambah = request()->get('barang_in');
-    //     $stoksekarang = DB::table('tbl_barang')
-    //         ->select(DB::raw('stok'))
-    //         ->where('id', '=', request()->get('nama_barang'))->get();
-
-    //     $nilai = 0;
-    //     foreach ($stoksekarang as $barang) {
-    //         $nilai = $barang->stok;
-    //     }
-
-    //     $data = array(
-    //         'stok' => $nilai
-    //     );
-    //     DB::table('tbl_barang')->where('id', '=', request()->get('nama_barang'))->update($data);
-    //     return redirect('transaksi/b_masuk')->with('sukses', 'Data Barang Berhasil Di Edit!');
-    // }
-
-
-
-
-    // Barang out
-
 
     public function b_keluar()
     {
@@ -162,40 +88,7 @@ class TransaksiController extends Controller
 
     public function save_tbkeluar(Request $request)
     {
-        // Request()->validate([
-        //     'id_bmasuk' => 'required',
-        //     'barang_out' => 'required',
-        //     'tanggal' => 'required',
-        // ], [
-        //     'nama_barang.required' => 'Nama Barang wajib Di Isi !',
-        //     'barang_out.required' => 'Barang Keluar Wajib Di Isi !',
-        //     'tanggal.required' => 'Tanggal  Wajib diisi !'
-        // ]);
-
-
-        // $detailBarangKeluar = array(
-        //     'id_transaksi_keluar' => request()->get('id_transaksi_keluar'),
-        //     'id_barang' => request()->get('nama_barang'),
-        //     'barang_out' => request()->get('barang_out'),
-        //     'tanggal' => request()->get('tanggal')
-        // );
-        // DB::table('barang_keluar')->insert($detailBarangKeluar);
-
-        // $stokkeluar = request()->get('barang_out');
-        // $stoksekarang = DB::table('tbl_barang')
-        //     ->select(DB::raw('stok'))
-        //     ->where('id', '=', request()->get('nama_barang'))->get();
-
-        // $nilai = 0;
-        // foreach ($stoksekarang as $barang) {
-        //     $nilai = $barang->stok;
-        // }
-
-        // $data = array(
-        //     'stok' => $nilai - $stokkeluar
-        // );
-        // DB::table('tbl_barang')->where('id', '=', request()->get('nama_barang'))->update($data);
-
+    
         $request->validate([
             'tanggal' => 'required',
             'barang_out' => 'required',
@@ -223,11 +116,13 @@ class TransaksiController extends Controller
     
         if ($stok <= 2) {
             DB::table('notifications')->insert([
-                'message' => 'Stok barang ' . $produk->produk_des . ' tersisa ' . $stok
+                'message' => 'Stok barang ' . $produk->produk_des . ' tersisa ' . $stok,
+                'is_read' => 0
             ]);
         }
     
 
         return redirect('transaksi/b_keluar')->with('sukses', 'Data Barang Berhasil ditambahkan');
     }
+    
 }
