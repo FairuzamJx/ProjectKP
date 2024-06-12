@@ -67,5 +67,5 @@ Route::post('/user/authenticate', [LoginController::class, 'authenticate']);
 Route::POST('/user/logout', [LoginController::class, 'logout']);
 
 
-    Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
-    Route::get('/notifications/delete/{id}', [NotificationController::class, 'delete'])->name('notifications.delete');
+Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+Route::get('/notifications/delete/{id}', [NotificationController::class, 'delete'])->name('notifications.delete');

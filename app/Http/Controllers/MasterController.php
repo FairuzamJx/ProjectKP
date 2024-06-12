@@ -124,6 +124,8 @@ class MasterController extends Controller
             'produk_des' => $request->produk_des,
             'produk_img' => $imageName, // Simpan nama gambar ke database
             'onh_stok' => $request->onh_stok,
+            'max' => $request->max,
+            'min' => $request->min,
             'bin_loc' => $request->bin_loc,
             'posprpo' => $request->posprpo,
             'remarks' => $request->remarks,
@@ -143,13 +145,12 @@ class MasterController extends Controller
         $request->produk_img->move(public_path('images'), $imageName);
     
         DB::table('tbl_jenisb')->where('id_produk', $request->id_produk)->update([
-            'id_produk'=> $request->id_produk,
-            'qty_sup' => $request->qty_sup,
             'kode_barang' => $request->kode_barang,
             'produk_des' => $request->produk_des,
             'produk_img' => $imageName, // Simpan nama gambar ke database
             'onh_stok' => $request->onh_stok,
-            'ttl_per' => $request->ttl_per,
+            'max' => $request->max,
+            'min' => $request->min,
             'bin_loc' => $request->bin_loc,
             'posprpo' => $request->posprpo,
             'remarks' => $request->remarks,

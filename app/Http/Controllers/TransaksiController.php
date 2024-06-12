@@ -52,22 +52,33 @@ class TransaksiController extends Controller
             'tanggal'=> $request->tanggal
         ]);
 
-        DB::table('tbl_jenisb')
-        ->where('id_produk', $request->id_pro)
-        ->increment('onh_stok', $request->barang_in);
 
-         // Cek stok barang
-         DB::table('tbl_jenisb')->where('id_produk', $request->id_pro)->increment('onh_stok', $request->barang_in);
+        // Ambil data produk
+    $produk = DB::table('tbl_jenisb')->where('id_produk', $request->id_pro)->first();
 
-         $stok = DB::table('tbl_jenisb')->where('id_produk', $request->id_pro)->value('onh_stok');
-         $produk = DB::table('tbl_jenisb')->where('id_produk', $request->id_pro)->first();
-        
-         if ($stok >= 5) {
+    if ($produk) {
+        // Ambil stok produk sebelum ditambahkan
+        $stok_sebelumnya = $produk->onh_stok;
+
+        // Tambahkan nilai barang_in ke stok produk
+        $stok_baru = $stok_sebelumnya + $request->barang_in;
+
+        // Update stok produk
+        DB::table('tbl_jenisb')->where('id_produk', $request->id_pro)->update(['onh_stok' => $stok_baru]);
+
+        // Cek apakah stok melebihi batas maksimum (max)
+        if ($stok_baru >= $produk->max) {
+            // Jika stok melebihi batas maksimum, tambahkan notifikasi
             DB::table('notifications')->insert([
-                'message' => 'Stok barang ' . $produk->produk_des . ' Penuh!!!',
+                'message' => 'Stok barang ' . $produk->produk_des . ' melebihi batas maksimum!!!',
                 'is_read' => 0
             ]);
         }
+    } else {
+        // Jika data produk tidak ditemukan, kembalikan pesan kesalahan
+        return redirect('transaksi/b_masuk')->withError('Produk tidak ditemukan.');
+    }
+
 
         return redirect('transaksi/b_masuk')->with('sukses', 'Data Barang Berhasil Ditambahkan!');
     }
@@ -105,24 +116,37 @@ class TransaksiController extends Controller
             'tanggal'=> $request->tanggal
         ]);
 
-        DB::table('tbl_jenisb')
-        ->where('id_produk', $request->id_bmasuk)
-        ->decrement('onh_stok', $request->barang_out);
 
-        DB::table('tbl_jenisb')->where('id_produk', $request->id_bmasuk)->decrement('onh_stok', $request->barang_out);
+        // Ambil data produk
+    $produk = DB::table('tbl_jenisb')->where('id_produk', $request->id_bmasuk)->first();
 
-        $stok = DB::table('tbl_jenisb')->where('id_produk', $request->id_bmasuk)->value('onh_stok');
-        $produk = DB::table('tbl_jenisb')->where('id_produk', $request->id_bmasuk)->first();
-    
-        if ($stok <= 2) {
+    if ($produk) {
+        // Ambil stok produk sebelum dikurangkan
+        $stok_sebelumnya = $produk->onh_stok;
+
+        // Kurangkan nilai barang_out dari stok produk
+        $stok_baru = $stok_sebelumnya - $request->barang_out;
+
+        // Pastikan stok tidak kurang dari nol
+        $stok_baru = max(0, $stok_baru);
+
+        // Update stok produk
+        DB::table('tbl_jenisb')->where('id_produk', $request->id_bmasuk)->update(['onh_stok' => $stok_baru]);
+
+        // Cek apakah stok kurang dari batas minimum (min)
+        if ($stok_baru <= $produk->min) {
+            // Jika stok kurang dari batas minimum, tambahkan notifikasi
             DB::table('notifications')->insert([
-                'message' => 'Stok barang ' . $produk->produk_des . ' tersisa ' . $stok,
+                'message' => 'Stok barang ' . $produk->produk_des . ' kurang dari batas minimum!!!',
                 'is_read' => 0
             ]);
         }
-    
-
-        return redirect('transaksi/b_keluar')->with('sukses', 'Data Barang Berhasil ditambahkan');
+    } else {
+        // Jika data produk tidak ditemukan, kembalikan pesan kesalahan
+        return redirect('transaksi/b_keluar')->withError('Produk tidak ditemukan.');
     }
+
+    return redirect('transaksi/b_keluar')->with('sukses', 'Data Barang Berhasil ditambahkan');
+}
     
 }

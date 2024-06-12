@@ -12,6 +12,15 @@
     {{session('danger') }}.
 </div>
 @endif
+<style>
+#gambar_produk {
+    transition: transform 0.2s;
+    max-width: 500px;
+}
+#gambar_produk:hover {
+    transform: scale(2.5); /* Sesuaikan dengan tingkat zoom yang diinginkan */
+}
+</style>
 <div class="card">
     <div class="card-header">
         <a href="/master/t_satuan" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Produk</a>
@@ -26,6 +35,8 @@
                     <!-- <th>QTY Suply</th> -->
                     <th>Unit</th>
                     <th>On Hand STOCK</th>
+                    <th>Max</th>
+                    <th>Min</th>
                     <!-- <th>Total Persamaan</th> -->
                     <!-- Supplier -->
                     <!-- tanggal masuk -->
@@ -48,13 +59,17 @@
                     </td>
                     <td><?= $br->onh_stok; ?>
                     </td>
+                    <td><?= $br->max; ?>
+                    </td>
+                    <td><?= $br->min; ?>
+                    </td>
                     <td><?= $br->bin_loc; ?>
                     </td>
                     <td><?= $br->posprpo; ?>
                     </td>
                     <td><?= $br->remarks; ?>
                     </td>
-                    <td><img src="{{ asset('images/' . $br->produk_img) }}" alt="Gambar Produk" style="max-width: 100px;">
+                    <td>  <img src="{{ asset('images/' . $br->produk_img) }}" alt="Gambar Produk" id="gambar_produk" style="max-width: 100px;" >
                     </td>
                     
 
@@ -100,7 +115,15 @@
                         </div>
                         <div class="modal-body">
                             <label>On Hand Stock</label>
-                            <input type="number" class="form-control" id="onh_stok" name="onh_stok" autofocus value="<?= old('onh_stok'); ?>" required>
+                            <input type="number" value="0" class="form-control" id="onh_stok" name="onh_stok" autofocus value="<?= old('onh_stok'); ?>" >
+                        </div>
+                        <div class="modal-body">
+                            <label>Max</label>
+                            <input type="number" class="form-control" id="max" name="max" autofocus value="<?= old('max'); ?>"required >
+                        </div>
+                        <div class="modal-body">
+                            <label>Min</label>
+                            <input type="number" class="form-control" id="min" name="min" autofocus value="<?= old('min'); ?>" required>
                         </div>
                         <div class="modal-body">
                             <label>Bin Loc</label>
@@ -160,6 +183,14 @@
                             <input type="number" class="form-control" value="<?= $br->onh_stok; ?>" id="onh_stok" name="onh_stok" autofocus value="<?= old('onh_stok'); ?>" required>
                         </div>
                         <div class="modal-body">
+                            <label>Max</label>
+                            <input type="number" class="form-control" id="max" name="max" autofocus value="<?= old('max'); ?>"required >
+                        </div>
+                        <div class="modal-body">
+                            <label>Min</label>
+                            <input type="number" class="form-control" id="min" name="min" autofocus value="<?= old('min'); ?>" required>
+                        </div>
+                        <div class="modal-body">
                             <label>Bin Loc</label>
                             <input type="name" class="form-control" value="<?= $br->bin_loc; ?>" id="bin_loc" name="bin_loc" autofocus value="<?= old('bin_loc'); ?>" required>
                         </div>
@@ -187,5 +218,6 @@
             <!-- /.modal-edit -->
         </div>
         @endforeach
+       
 
         @endSection()
