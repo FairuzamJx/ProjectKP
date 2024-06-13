@@ -1,6 +1,27 @@
 
 <!-- Navbar -->
 @include('layout.template')
+<head>
+    <style>
+        /* Styling for the notifications dropdown */
+.dropdown-menu {
+    max-width: 300px; /* Set a maximum width for the dropdown */
+    word-wrap: break-word; /* Ensure long words break to the next line */
+}
+
+.dropdown-item a {
+    display: block;
+    white-space: normal; /* Allow text to wrap normally */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.dropdown-item .text-muted {
+    font-size: 0.8rem; /* Make the timestamp smaller */
+}
+
+    </style>
+</head>
 <nav class="main-header navbar navbar-expand navbar-gradient-dark navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -29,37 +50,38 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
             <ul class="navbar-nav ml-auto">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                        <a class="nav-link notification-toggle" data-toggle="dropdown" href="#">
-                            <i class="fas fa-bell"></i>
-                            @php
-                                $notifications = DB::table('notifications')->where('is_read', 0)->get();
-                                $count = $notifications->count();
-                            @endphp
-                            @if($count > 0)
-                                <span class="badge badge-warning navbar-badge">{{ $count }}</span>
-                            @endif
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-header">{{ $count }} Notifications</span>
-                            <div class="dropdown-divider"></div>
-                            @foreach($notifications as $notification)
-                                <div class="dropdown-item d-flex justify-content-between align-items-center">
-                                    <div class="d-flex flex-column">
-                                        <a href="{{ route('notifications.read', $notification->id) }}" class="text-dark">
-                                            <i class="fas fa-exclamation-circle mr-2"></i> {{ $notification->message }}
-                                            <span class="float-right text-muted text-sm">{{ $notification->created_at }}</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                            @endforeach
-                            <a href="#" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
+             <!-- Notifications Dropdown Menu -->
+             <li class="nav-item dropdown">
+            <a class="nav-link notification-toggle" data-toggle="dropdown" href="#">
+                <i class="fas fa-bell"></i>
+                @php
+                    $notifications = DB::table('notifications')->where('is_read', 0)->get();
+                    $count = $notifications->count();
+                @endphp
+                @if($count > 0)
+                    <span class="badge badge-warning navbar-badge">{{ $count }}</span>
+                @endif
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-header">{{ $count }} Notifications</span>
+                <div class="dropdown-divider"></div>
+                @foreach($notifications as $notification)
+                    <div class="dropdown-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex flex-column">
+                            <a href="{{ route('notifications.read', $notification->id) }}" class="text-dark">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                <span>{{ $notification->message }}</span>
+                                <span class="float-right text-muted text-sm">{{ $notification->created_at }}</span>
+                            </a>
                         </div>
-                    </li>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                @endforeach
+                <a href="{{ route('notifications.deleteAll') }}" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
             </div>
+        </li>
+
+<!-- </div> -->
         </ul>
                 <!-- Authentication Links -->
                 @guest

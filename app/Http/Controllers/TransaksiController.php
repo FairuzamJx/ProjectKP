@@ -150,7 +150,7 @@ class TransaksiController extends Controller
         DB::table('tbl_jenisb')->where('id_produk', $request->id_bmasuk)->update(['onh_stok' => $stok_baru]);
 
         // Cek apakah stok kurang dari batas minimum (min)
-        if ($stok_baru < $produk->min) {
+        if ($stok_baru <= $produk->min) {
             // Jika stok kurang dari batas minimum, tambahkan notifikasi
             DB::table('notifications')->insert([
                 'message' => 'Stok barang ' . $produk->produk_des . ' kurang dari batas minimum!!!',

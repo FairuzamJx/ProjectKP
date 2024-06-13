@@ -16,7 +16,7 @@
                     <div class="icon">
                         <i class="bi bi-bag"></i>
                     </div>
-                    <a href="/master/index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="/master/jbarang" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

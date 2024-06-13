@@ -67,5 +67,8 @@ Route::post('/user/authenticate', [LoginController::class, 'authenticate']);
 Route::POST('/user/logout', [LoginController::class, 'logout']);
 
 
+// Rute untuk menandai satu notifikasi sebagai dibaca
 Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
-Route::get('/notifications/delete/{id}', [NotificationController::class, 'delete'])->name('notifications.delete');
+
+// Rute untuk menghapus semua notifikasi
+Route::get('/notifications/delete-all', [NotificationController::class, 'deleteAll'])->name('notifications.deleteAll');
