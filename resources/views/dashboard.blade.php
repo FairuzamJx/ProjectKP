@@ -9,7 +9,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3><?= $jml_barang; ?></h3>
+                        <h3><?= $jml_produk; ?></h3>
 
                         <p>Barang</p>
                     </div>

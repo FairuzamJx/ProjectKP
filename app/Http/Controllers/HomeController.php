@@ -23,6 +23,7 @@ class HomeController extends Controller
     {
         $data = [
             'jml_barang' => $this->BarangModel->jml_barang(),
+            'jml_produk' => $this->BarangModel->jml_produk(),
             'jml_masuk' => $this->TransaksiModel->jml_masuk(),
             'jml_keluar' => $this->TransaksiModel->jml_keluar(),
             'jml_user' => $this->user->jml_user()

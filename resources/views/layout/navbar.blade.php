@@ -245,8 +245,8 @@
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <strong>Copyright &copy; 2022<a href=""></a>.</strong>
-    All rights reserved.
+    <strong>Copyright &copy; 2022</a> By</strong>
+    Kiiea a.k.a Fairuzam.
     <div class="float-right d-none d-sm-inline-block">
 
     </div>

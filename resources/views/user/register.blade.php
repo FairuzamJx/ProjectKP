@@ -60,7 +60,7 @@
                 </div>
 
                     <div class="modal-footer justify-content-between col-sm-8">
-                        <a href="" class="btn btn-danger mt-2" data-dismiss="modal">Close</a>
+                        <a href="/user/v_user" class="btn btn-danger mt-2" data-dismiss="modal">Close</a>
                         <button type="submit" class="btn btn-success mt-2">Tambah</button>
                     </div>
 

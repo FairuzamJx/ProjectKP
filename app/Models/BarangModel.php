@@ -34,4 +34,9 @@ class BarangModel extends Model
     {
         return DB::table('tbl_barang')->count();
     }
+    
+    public function jml_produk()
+    {
+        return DB::table('tbl_jenisb')->count();
+    }
 }
