@@ -21,10 +21,11 @@
     transform: scale(2.5); /* Sesuaikan dengan tingkat zoom yang diinginkan */
 }
 </style>
-<div class="card">
-    <div class="card-header">
-        <a href="/master/t_satuan" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Produk</a>
-    </div>
+@role('admin', 'superadmin')
+        <div class="card-header">
+            <a href="/master/t_satuan" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Produk</a>
+        </div>
+    @endrole
     <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
             <thead class="text-center">
@@ -44,8 +45,9 @@
                     <th>PO / SPR / PCO</th>
                     <th>Remarks</th>
                     <th>Gambar Produk</th>
+                    @role('admin', 'superadmin')
                     <th>Aksi</th>
-
+                    @endrole
                 </tr>
             </thead>
             <tbody>
@@ -72,7 +74,7 @@
                     <td>  <img src="{{ asset('images/' . $br->produk_img) }}" alt="Gambar Produk" id="gambar_produk" style="max-width: 100px;" >
                     </td>
                     
-
+                    @role('admin', 'superadmin')
                     <td width='150px' class="text-center">
                         <form action="/master/d_jbarang/<?= $br->id_produk; ?>" enctype="multipart/form-data" class="d-inline">
                             @csrf
@@ -82,6 +84,7 @@
                         <a href="" class="btn btn-success" data-toggle="modal" data-target="#edit<?= $br->id_produk;?>"><i class="fas fa-fw fa-pen"></i>
                         </a>
                     </td>
+                    @endrole
                 </tr>
                 @endforeach
             </tbody>

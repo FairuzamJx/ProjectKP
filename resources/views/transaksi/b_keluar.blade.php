@@ -13,9 +13,12 @@
 </div>
 @endif
 <div class="card">
-    <div class="card-header">
+@role('superadmin', 'admin')
+<div class="card-header">
         <a href="/transaksi/tb_keluar" class="btn btn-primary">Tambah Barang Keluar</a>
     </div>
+    @endrole
+
     <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
             <thead class="text-center">

@@ -13,9 +13,11 @@
 </div>
 @endif
 <div class="card">
+@role('admin', 'superadmin')
     <div class="card-header">
         <a href="/master/t_satuan" class="btn btn-primary" data-toggle="modal" data-target="#edit">Tambah Suplier</a>
     </div>
+    @endrole
     <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
             <thead class="text-center">
@@ -26,7 +28,9 @@
                     <th>Alamat</th>
                     <th>No HandPhone</th>
                     <th>Deskripsi</th>
+                    @role('admin', 'superadmin')
                     <th>Aksi</th>
+                    @endrole
 
                 </tr>
             </thead>
@@ -42,7 +46,7 @@
                     </td>
                     <td><?= $s->des_sup; ?>
                     </td>
-
+                    @role('admin', 'superadmin')
                     <td width='150px' class="text-center">
                         <form action="/master/d_satuan/<?= $s->id_suplier; ?>" enctype="multipart/form-data" class="d-inline">
                             @csrf
@@ -52,6 +56,7 @@
                         <a href="" class="btn btn-success" data-toggle="modal" data-target="#edit<?= $s->id_suplier;?>"><i class="fas fa-fw fa-pen"></i>
                         </a>
                     </td>
+                    @endrole
                 </tr>
                 @endforeach
             </tbody>

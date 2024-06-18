@@ -35,14 +35,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/master/d_satuan/{id_suplier}', [MasterController::class, 'd_satuan']);
 
     // Transaksi barang masuk
-    Route::get('/transaksi/b_masuk', [TransaksiController::class, 'b_masuk'])->middleware('is_admin:Superadmin,admin');
+    Route::get('/transaksi/b_masuk', [TransaksiController::class, 'b_masuk'])->middleware('is_admin:Superadmin,admin,user');
     Route::get('/transaksi/t_masuk', [TransaksiController::class, 't_masuk'])->middleware('is_admin:Superadmin,admin');
     Route::POST('/transaksi/save_bmasuk', [TransaksiController::class, 'save_bmasuk'])->middleware('is_admin:Superadmin,admin');
     Route::get('/transaksi/edit_barangmasuk/{id_masuk}', [TransaksiController::class, 'edit_barangmasuk'])->middleware('is_admin:Superadmin,admin');
     // Route::post('/transaksi/save_editbarangmasuk/{id_masuk}', [TransaksiController::class, 'save_editbarangmasuk']);
     // Route::get('/transaksi/delete_barangmasuk/{id_masuk}', [TransaksiController::class, 'delete_barangmasuk']);
     // Transaksi barang keluar
-    Route::get('/transaksi/b_keluar', [TransaksiController::class, 'b_keluar'])->middleware('is_admin:Superadmin,admin');
+    Route::get('/transaksi/b_keluar', [TransaksiController::class, 'b_keluar'])->middleware('is_admin:Superadmin,admin,user');
     Route::get('/transaksi/tb_keluar', [TransaksiController::class, 'tb_keluar'])->middleware('is_admin:Superadmin,admin');
     Route::POST('/transaksi/save_tbkeluar', [TransaksiController::class, 'save_tbkeluar'])->middleware('is_admin:Superadmin,admin');
 
