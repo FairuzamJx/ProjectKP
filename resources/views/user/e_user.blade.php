@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Form Edit User')
+@section('judul', 'Form Edit User')
 
 <form action="/user/save_edituser/<?= $user->id; ?>" method="post" enctype="multipart/form-data">
     @csrf

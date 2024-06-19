@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Form Barang Keluar')
+@section('judul', 'Form Barang Keluar')
 
 
 <form action="/transaksi/save_tbkeluar" method="POST" enctype="multipart/form-data">

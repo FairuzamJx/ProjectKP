@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Form Change Password')
+@section('judul', 'Form Change Password')
 
 <form action="/user/changePassword" method="POST" enctype="multipart/form-data">
     @csrf

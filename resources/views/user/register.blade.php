@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Form Tambah User')
+@section('judul', 'Form Tambah User')
 
 <form action="/user/register" method="get" enctype="multipart/form-data">
     @csrf

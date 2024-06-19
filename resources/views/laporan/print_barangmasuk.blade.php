@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Dashboard')
+@section('judul', 'Dashboard')
 <div class="card-body">
     <table id="example1" class="table table-bordered table-striped">
         <thead class="text-center">
