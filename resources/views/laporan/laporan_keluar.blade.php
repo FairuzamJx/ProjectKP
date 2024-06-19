@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Laporan Barang Keluar')
+@section('judul', 'Laporan Barang Keluar')
 <div class="container">
     <div class="card">
         <div class="row col-12">

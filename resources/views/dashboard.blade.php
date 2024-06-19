@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Dashboard')
+@section('judul', 'Dashboard')
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->

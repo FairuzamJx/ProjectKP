@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Master Edit Barang')
+@section('judul', 'Master Edit Barang')
 
 <form action="/master/save_ebarang/<?= $edit_barang->id; ?>" method="POST" enctype="multipart/form-data">
     @csrf

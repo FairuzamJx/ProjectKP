@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Satuan')
+@section('judul', 'Satuan')
 @section('title', 'Data Master Suplier')
 @if (session('sukses'))
 <div class="alert alert-success mt-2" role="alert">

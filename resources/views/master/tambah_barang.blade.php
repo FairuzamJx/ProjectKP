@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Tambah Barang')
+@section('judul', 'Tambah Barang')
 
 <?php $iduser = '001';
 $str_time = date('ymdHis');
