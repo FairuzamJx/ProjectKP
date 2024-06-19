@@ -98,14 +98,12 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a href="/user/v_changepas" class="dropdown-item"><i class="bi bi-pen-fill"></i> Change Password</a>
                         <form action="/user/logout" method="POST">
                             @csrf
                             <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>
                                 logout</button>
                         </form>
-
-
-                        <a href="/user/v_changepas" class="dropdown-item"><i class="bi bi-pen-fill"></i> Change Password</a>
                     </div>
 
                 </li>

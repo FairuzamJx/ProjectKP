@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 @section('content')
-@section('judul', 'Laravel | Form Edit Barang Masuk')
+@section('judul', 'Form Edit Barang Masuk')
 
 
 
