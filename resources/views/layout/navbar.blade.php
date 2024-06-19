@@ -198,8 +198,6 @@
                             </a>
                         </li>
                 </li>
-
-
             </ul>
             </li>
             <li class="nav-item has-treeview">
@@ -220,7 +218,7 @@
                     </li>
                 </ul>
 
-
+            @role('superadmin')
             <li class="nav-item has-treeview">
                 <a href="/user/v_user" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
@@ -228,7 +226,8 @@
                         Manajemen User
                     </p>
                 </a>
-
+            </li>
+            @endrole
         </nav>
         <!-- /.sidebar-menu -->
     </div>
